@@ -48,40 +48,39 @@ public class App {
         int personasMayores = 0;
         int personasMenores = 0;
 
-        for(int i = 0; personas.length> 1; i++){
-            if(personas[i].getEdad()>= 18){
+        for (int i = 0; i < personas.length; i++) {
+            if(personas[i].getEdad() >= 18){
                 personasMayores++;
-
-            }else{
+            } else{
                 personasMenores++;
             }
         }
-
-        Par<String, Integer>[] mayores = new Par[personasMayores];
-        Par<String, Integer>[] menores = new Par[personasMenores];
+        Par<String,Integer>[] mayores = new Par[personasMayores];
+        Par<Integer,String>[] menores = new Par[personasMenores];
 
         int contadorMayores = 0;
         int contadorMenores = 0;
-
-        for(int i = 0; i < personas.length; i++){
-            if(personas[i].getEdad()>= 18){
+        for (int i = 0; i < personas.length; i++) {
+            if (personas[i].getEdad() >= 18) {
                 mayores[contadorMayores] = new Par<String, Integer>();
                 mayores[contadorMayores].establecerClave(personas[i].getNombre());
-            } else {
-                mayores[contadorMenores] = new Par<Integer, String>();
-                mayores[contadorMenores].establecerValor(personas[i].getNombre());
-            } 
-        }   
-
-        System.out.println("Mayores de edad: ");
-        for(Par<String, Integer> par : mayores) {
+                mayores[contadorMayores].establecerValor(personas[i].getEdad());
+                contadorMayores++;
+            }else{
+                menores[contadorMenores] = new Par<Integer, String>();
+                menores[contadorMenores].establecerClave(personas[i].getEdad());
+                menores[contadorMenores].establecerValor(personas[i].getNombre());
+                contadorMenores++;
+            }
+        }
+        System.out.println("MAYORES DE EDAD");
+        for (Par<String, Integer> par : mayores) {
             System.out.println(par.obtenerClave() + " - " + par.obtenerValor());
-        }  
-
-        System.out.println("Menores de edad: ");
-        for(Par<Integer, String> par : menores) {
+        }
+        System.out.println("MENORES DE EDAD");
+        for(Par<Integer, String> par : menores){
             System.out.println(par.obtenerClave() + " - " + par.obtenerValor());
-        }  
+        }
     }
 }
 
